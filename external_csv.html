@@ -12,6 +12,10 @@ d3.csv("stocks.csv", function(data) {
     d.date = format.parse(d.date);
   });
   
+  data = data.filter(function(d) {
+    return d.symbol == "S&P 500";
+  });
+
   var transformX = d3.scale.linear()
       .domain(d3.extent(data, function(d) {return d.date;}))
       .range([10, 600]);
