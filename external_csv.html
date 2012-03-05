@@ -28,7 +28,6 @@ d3.csv("stocks.csv", function(data) {
     .enter().append("circle")
       .attr("cx", function(d) {return(transformX(d.date))})
       .attr("cy", function(d) {return(transformY(d.price))})
-      .attr("r", 5)
-      .attr("color", "red");
+      .attr("r", 5);
   });
 </script>
