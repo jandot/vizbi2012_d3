@@ -1,0 +1,19 @@
+h1. D3 = Data-Driven Documents
+
+Resources:
+* http://bost.ocks.org/mike/d3/workshop/
+* HTML5 for Developers
+* selectors spec: http://www.w3.org/TR/selectors/
+* javascript: https://developer.mozilla.org/en/JavaScript
+
+Use "style" instead of "attr", if possible.
+
+!! "Append" returns a new selection!!
+var h1 = d3.selectAll("section")
+    .style("background", "steelblue")
+  .append("h1")
+    .text("Hello!");
+
+mbostock uses 2 spaces when a new selection.
+
+http://bost.ocks.org/mike/join/
