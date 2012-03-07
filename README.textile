@@ -17,3 +17,5 @@ var h1 = d3.selectAll("section")
 mbostock uses 2 spaces when a new selection.
 
 http://bost.ocks.org/mike/join/
+
+For mouseover effects: http://www.petercollingridge.co.uk/data-visualisation/mouseover-effects-svgs
