@@ -32,7 +32,7 @@ var colours = d3.scale.category10()
               .domain(['10YearT-Note','AAPL','AMZN','GOOG','IBM','MSFT','SP500']);
 
 var legend_group = svg.append("g")
-      .attr("transform","translate(650,50)");
+      .attr("transform","translate(700,50)");
 
 function flip_visibility(g) {
 	var group = d3.selectAll("#g_" + g);
@@ -49,17 +49,18 @@ d3.csv("stocks.csv", function(data) {
     d.date = format.parse(d.date);
   });
 
-  var transformX = d3.scale.linear()
+  var transformX = d3.time.scale()
       .domain(d3.extent(data, function(d) {return d.date;}))
-      .range([40, 600]);
+      .range([90, 650]);
   var transformY = d3.scale.linear()
       .domain(d3.extent(data, function(d) {return d.price;}))
       .range([500,40]);
   var xAxis = d3.svg.axis()
-                 .scale(d3.scale.linear().range([0,600]))
-                 .orient("bottom");
+                 .scale(transformX)
+                 .orient("bottom")
+                 .tickFormat(d3.time.format("%Y"));
   var yAxis = d3.svg.axis()
-                 .scale(d3.scale.linear().range([500,0]))
+                 .scale(transformY)
                  .orient("left");
 
   //Plot the legend
@@ -79,12 +80,12 @@ d3.csv("stocks.csv", function(data) {
   
   //Plot the axes
   svg.append("svg:g")
-      .attr("transform","translate(30,530)")
+      .attr("transform","translate(0,530)")
       .attr("class", "x axis")
       .call(xAxis);
   
   svg.append("svg:g")
-      .attr("transform","translate(30,30)")
+      .attr("transform","translate(80,0)")
       .attr("class", "y axis")
       .call(yAxis);
 
@@ -101,7 +102,7 @@ d3.csv("stocks.csv", function(data) {
         .datum(data)
         .attr("class","line")
         .style("stroke", function() {return colours(colours.domain()[i])})
-        .style("stroke-width", 2)
+        .style("stroke-width", 1)
         .attr("d", line);
 	  };
   });
