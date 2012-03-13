@@ -84,16 +84,29 @@ d3.csv("stocks.csv", function(data) {
       .attr("y", function(d,i) {return 6 + i*20})
       .text(function(d) {return d});
   
-  //Plot the axes
+  //Plot the title and axes
+  svg.append("svg:text")
+      .attr("x", 150)
+      .attr("y", 30)
+      .style("font-size", 36)
+      .text("Evolution of stock")
   svg.append("svg:g")
       .attr("transform","translate(0,530)")
       .attr("class", "x axis")
       .call(xAxis);
+  svg.append("svg:text")
+      .attr("x", 30)
+      .attr("y", 30)
+      .text("Price ($)");
   
   svg.append("svg:g")
       .attr("transform","translate(80,0)")
       .attr("class", "y axis")
       .call(yAxis);
+  svg.append("svg:text")
+      .attr("x", 630)
+      .attr("y", 570)
+      .text("Year")
 
   var all_data = data;
   for (var i in colours.domain()) {
