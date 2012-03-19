@@ -40,7 +40,9 @@ d3.json("input.json", function(json) {
 	force
 		.nodes(json.n)
 		.links(json.l)
-		.linkDistance(function(d) {return 250*d.value})
+		.linkStrength(function(d) {return d.value})
+		.charge(0)
+		.gravity(0)
 		.start();
 
 	var link = vis.selectAll("line")
