@@ -26,6 +26,13 @@ var vis = d3.select("body").append("svg")
     .attr("width", w)
     .attr("height", h);
 
+var tooltip = d3.select("body")
+	  .append("div")
+	  .style("position", "absolute")
+	  .style("z-index", "10")
+	  .style("visibility", "hidden")
+	  .text("bla");
+
 var force = d3.layout.force()
     .size([w, h]);
 
@@ -50,6 +57,9 @@ d3.json("input.json", function(json) {
     		.attr("cy", function(d) { return d.y; })
     		.attr("r", 8)
 			.attr("type", function(d) {return d.type})
+			.on("mouseover", function(d){return tooltip.style("visibility", "visible").text(d.key);})
+	        .on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+	        .on("mouseout", function(){return tooltip.style("visibility", "hidden");})
     		.call(force.drag);
 
 	force.on("tick", function(e) {
