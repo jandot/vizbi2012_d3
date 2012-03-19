@@ -1,0 +1,36 @@
+{"n":[
+  {"key":"A"},
+  {"key":"B"},
+  {"key":"C"},
+  {"key":"D"},
+  {"key":"E"},
+  {"key":"F"},
+  {"key":"anchor1", "x":250, "y":100, "fixed":true, "fill":"red", "type":"anchor"},
+  {"key":"anchor2", "x":400, "y":400, "fixed":true, "fill":"red", "type":"anchor"},
+  {"key":"anchor3", "x":100, "y":400, "fixed":true, "fill":"red", "type":"anchor"}
+], "l": [
+  {"source":0,"target":6,"value":0.8},
+  {"source":0,"target":7,"value":0.2},
+  {"source":0,"target":8,"value":0},
+
+  {"source":1,"target":6,"value":0.7},
+  {"source":1,"target":7,"value":0.3},
+  {"source":1,"target":8,"value":0},
+
+  {"source":2,"target":6,"value":0.8},
+  {"source":2,"target":7,"value":0.15},
+  {"source":2,"target":8,"value":0.05},
+
+  {"source":3,"target":6,"value":0.3},
+  {"source":3,"target":7,"value":0.5},
+  {"source":3,"target":8,"value":0.2},
+
+  {"source":4,"target":6,"value":0.6},
+  {"source":4,"target":7,"value":0.2},
+  {"source":4,"target":8,"value":0.2},
+
+  {"source":5,"target":6,"value":0.2},
+  {"source":5,"target":7,"value":0.2},
+  {"source":5,"target":8,"value":0.6}
+]}
+

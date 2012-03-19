@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Force-Directed Layout (Multiple Foci)</title>
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+    <!-- // <script type="text/javascript" src="http://mbostock.github.com/d3/d3.geom.js"></script>
+    // <script type="text/javascript" src="http://mbostock.github.com/d3/d3.layout.js"></script> -->
+	<style>
+	circle {
+		fill: steelblue;
+	}
+	[type=anchor] {	fill: black	}
+
+	circle:hover { fill: red; opacity: 0.8}
+
+	line { stroke: grey; opacity: 0.2}
+	</style>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+var w = 960,
+    h = 500;
+
+var vis = d3.select("body").append("svg")
+    .attr("width", w)
+    .attr("height", h);
+
+var force = d3.layout.force()
+    .size([w, h]);
+
+d3.json("input.json", function(json) {
+	force
+		.nodes(json.n)
+		.links(json.l)
+		.linkDistance(function(d) {return 250*d.value})
+		.start();
+
+	var link = vis.selectAll("line")
+		    .data(json.l)
+		.enter().append("line")
+			.attr("x1", function(d) { return d.source.x; })
+			.attr("y1", function(d) { return d.source.y; })
+			.attr("x2", function(d) { return d.target.x; })
+			.attr("y2", function(d) { return d.target.y; });
+	var node = vis.selectAll("circle.node")
+    		.data(json.n)
+  		.enter().append("circle")
+    		.attr("cx", function(d) { return d.x; })
+    		.attr("cy", function(d) { return d.y; })
+    		.attr("r", 8)
+			.attr("type", function(d) {return d.type})
+    		.call(force.drag);
+
+	force.on("tick", function(e) {
+	  link.attr("x1", function(d) { return d.source.x; })
+	      .attr("y1", function(d) { return d.source.y; })
+	      .attr("x2", function(d) { return d.target.x; })
+	      .attr("y2", function(d) { return d.target.y; });
+
+	  node.attr("cx", function(d) { return d.x; })
+	      .attr("cy", function(d) { return d.y; });
+	});
+});
+d3.select("body").on("click", function() {
+  nodes.forEach(function(o, i) {
+    o.x += (Math.random() - .5) * 40;
+    o.y += (Math.random() - .5) * 40;
+  });
+  force.resume();
+});
+
+    </script>
+  </body>
+</html>
